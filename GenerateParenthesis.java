@@ -30,13 +30,14 @@ public class GenerateParenthesis {
             result.add(current);
             return;
         }
+
         if(open < max){
             helper(result, current + "(", open + 1, close, max);
         }
         if(close < open){
-            helper(result, current + ')', open, close + 1, max);
+            helper(result, current + ")", open, close + 1, max);
         }
-    }
+    } 
     public static void main(String[] args) {
         System.out.println(generateParenthesis(3));
     }
