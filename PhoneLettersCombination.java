@@ -21,23 +21,21 @@ import java.util.List;
 
 public class PhoneLettersCombination {
     public static List<String> letterCombinations(String digits){
-        if(digits.equals("")) return new ArrayList<>();
-
-        String mappings[] = {"" , "" , "abc" , "def" , "ghi" , "jkl" , "mno" , "pqrs" , "tuv" , "wxyz"};
         List<String> result = new ArrayList<>();
-
-        helper(digits, mappings, new StringBuffer(), result, 0);
+        String[] mappings = {"" , "" , "abc" , "def" , "ghi" , "jkl" , "mno" , "pqrs" , "tuv" , "qxyz"};
+        helper(0, mappings, digits, result, new StringBuffer());
         return result;
     }
-    public static void helper(String digits , String[] mappings , StringBuffer current , List<String> result , int index){
-        if(index == digits.length()) {
+    public static void helper(int index , String[] mappings , String digits, List<String> result , StringBuffer current){
+        if(index == digits.length()){
             result.add(current.toString());
             return;
         }
+
         String string = mappings[digits.charAt(index) - '0'];
         for(int i = 0 ; i < string.length() ; i++) {
             current.append(string.charAt(i));
-            helper(digits, mappings, current, result, index + 1);
+            helper(index + 1, mappings, digits, result, current);
             current.deleteCharAt(current.length() - 1);
         }
     }
