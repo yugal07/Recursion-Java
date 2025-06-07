@@ -26,24 +26,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Permutations {
-    public static List<List<Integer>> permute(int arr[]) {
+    public static List<List<Integer>> permute(int arr[]){
         List<List<Integer>> result = new ArrayList<>();
-
-        getPermutations(arr, result, new ArrayList<>());
+        generatePermutations(result, new ArrayList<>(), arr);
         return result;
     }
-    public static void getPermutations(int arr[] , List<List<Integer>> result , List<Integer> current){
+    public static void generatePermutations(List<List<Integer>> result , List<Integer> current , int [] arr){
         if(current.size() == arr.length) {
             result.add(new ArrayList<>(current));
             return;
         }
 
-        for(int i = 0 ; i < arr.length  ; i++) {
-            if(current.contains(arr[i])) continue;
+        for(int i = 0 ; i  <arr.length ; i++) {
+            if(current.contains(arr[i]))  continue;
 
             current.add(arr[i]);
-            getPermutations(arr, result, current);
-            current.remove(current.size() - 1); 
+            generatePermutations(result, current, arr);
+            current.remove(current.size() - 1);
         }
     }
     public static void main(String[] args) {
