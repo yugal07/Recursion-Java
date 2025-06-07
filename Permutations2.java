@@ -43,7 +43,7 @@ public class Permutations2 {
 
             if(i > 0 && arr[i] == arr[i - 1] && used[i - 1]) continue;
             used[i] = true;
-            current.add(arr[i]);`
+            current.add(arr[i]);
             generatePermutations(arr, result, current, used);
             current.remove(current.size() - 1);
             used[i] = false;
