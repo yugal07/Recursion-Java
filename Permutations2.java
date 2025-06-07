@@ -26,31 +26,30 @@ import java.util.List;
 
 public class Permutations2 {
     public static List<List<Integer>> permuteUnique(int arr[]){
+        boolean used[] = new boolean[arr.length];
         Arrays.sort(arr);
         List<List<Integer>> result = new ArrayList<>();
-        boolean used[] = new boolean[arr.length];
         generatePermutations(arr, result, new ArrayList<>(), used);
         return result;
     }
-
-    public static void generatePermutations(int[] arr , List<List<Integer>> result , List<Integer> current , boolean[] used){
-        if(current.size() == arr.length ){
+    public static void generatePermutations(int arr[] , List<List<Integer>> result , List<Integer> current , boolean used[]){
+        if(current.size() == arr.length) {
             result.add(new ArrayList<>(current));
             return;
         }
+
         for(int i = 0 ; i < arr.length ; i++) {
             if(used[i]) continue;
 
-            if(i > 0 && arr[i] == arr[i - 1] && !used[i - 1]) continue;
-
+            if(i > 0 && arr[i] == arr[i - 1] && used[i - 1]) continue;
             used[i] = true;
-            current.add(arr[i]);
+            current.add(arr[i]);`
             generatePermutations(arr, result, current, used);
             current.remove(current.size() - 1);
             used[i] = false;
         }
     }
     public static void main(String[] args) {
-        System.out.println(permuteUnique(new int[]{1,1,2}));
+        System.out.println(permuteUnique(new int[]{1,2,3,3}));
     }
 }
