@@ -1,3 +1,5 @@
+
+
 public class CheckIfArrayIsSorted {
     public static Boolean isSorted(int arr[] , int n) {
         // n is the size of the array
